@@ -15,7 +15,7 @@ let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/navigation-night
 
 // Create a base layer that holds maps
 let baseMaps = {
-  "Ligth": light,
+  "Light": light,
   "Dark": dark,
 };
 
@@ -25,12 +25,13 @@ let predictionTrend = new L.LayerGroup();
 let futurePredictionTrend = new L.LayerGroup();
 // let Ozone = new L.LayerGroup();
 
+// recentTrend.addTo(myMap);
+
 // Create overlay object.
 let overlays = {
   "Actual Trend": recentTrend,
   "Model Prediction": predictionTrend,
   "Future Trend": futurePredictionTrend,
-  // "Ozone": Ozone
 };
 
 // Create map object
@@ -38,14 +39,16 @@ var myMap = L.map("map", {
   center: [39.0119, -98.4842],
   zoom: 5, //4.2
   layers: [light, recentTrend]
-  // overlays: [recentTrend]
 });
+
 
 // Control map that allows to change which layers are visible.
 
-L.control.layers(baseMaps, overlays, {
+L.control.layers(baseMaps, overlays,  {
   collapsed: true,
 }).addTo(myMap);
+
+
 
 // geojson data
 var link = "static/data/map_data.json";
